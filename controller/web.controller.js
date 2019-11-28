@@ -55,6 +55,20 @@ updateUser=(req,res)=>{
 		return  res.send(err)
     });
 }
+searchFilter=(req,res)=>{
+	services.searchFilter(req.body).then(user_result=>{
+		
+		res.status(200);
+		response={ msg: 'User information fetch successfully.' }
+				return	res.send(response)
+		
+	}).catch(function(err) {
+        console.log('error:', err);
+	  	
+		res.status(500);
+		return  res.send(err)
+    });
+}
 
-module.exports ={login,registration,getAllUser,updateUser}
+module.exports ={login,registration,getAllUser,updateUser,searchFilter}
 

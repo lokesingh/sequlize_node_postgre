@@ -90,5 +90,8 @@ updateUser=(data)=>{
 		});
 	})
 }
+searchFilter=(data)=>{
 
-module.exports={saveUserInformation,getAllUser,login}
+}
+
+module.exports={saveUserInformation,getAllUser,login,searchFilter}

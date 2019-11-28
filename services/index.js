@@ -85,4 +85,18 @@ updateUser=(data)=> {
    	})
 }
 
-module.exports={saveUser,getAllUser,login,updateUser}
+searchFilter=(data)=> {
+	return new Promise((resolve, reject)=>{ 
+	  repository.searchFilter(data).then(result=> {
+	  		
+	      //return result;
+	    resolve(result);
+	  }).catch(function (err) {
+	        console.log(err);
+	       // return err;
+	     reject(err); 
+	  });
+   	})
+}
+
+module.exports={saveUser,getAllUser,login,updateUser,searchFilter}
