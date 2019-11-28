@@ -4,7 +4,8 @@ var jwt = require('jsonwebtoken');
 var modal = require('../models/index')
 var secret = "6z7mfMW1GwKzG2sgsG9icqN1bfcJTooGwIOySP22";
 module.exports.checkAuthenication=(req,res,next)=>{
-    var token =  req.headers['x-access-token'];
+   // var token =  req.headers['x-access-token'];
+    var token = req.body.token
     
     if (token) {
         //veryfy token
@@ -17,9 +18,9 @@ module.exports.checkAuthenication=(req,res,next)=>{
             } else {
                 // check user id here 
                  var user_id = decoded.user_id;
-               
+                
                 modal.user.findAll({where: {id: user_id}}).then(function(user_result) {
-                    if(user_result){
+                    if(user_result.length>0){
                 
                    
                       return next();

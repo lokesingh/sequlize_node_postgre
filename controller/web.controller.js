@@ -10,8 +10,6 @@ registration=(req, res) => {
 				return	res.send(response)
 		
 	}).catch(function(err) {
-        console.log('error:', err);
-	  	
 		res.status(500);
 		return  res.send(err)
     });
@@ -25,7 +23,6 @@ getAllUser=(req, res) => {
 		response={  msg: 'get user successfully.',get_user_result }
 				return	res.send(response)
 	}).catch(function(err) {
-        console.log('error:', err);
 		res.status(500);
 		return  res.send(err)
     });
@@ -35,7 +32,6 @@ login=(req, res) => {
 		res.status(200);
 		return	res.send(get_user_result)
 	}).catch(function(err) {
-        console.log('error:', err);
 		res.status(500);
 		return  res.send(err)
     });
@@ -49,9 +45,8 @@ updateUser=(req,res)=>{
 				return	res.send(response)
 		
 	}).catch(function(err) {
-        console.log('error:', err);
-	  	
 		res.status(500);
+		console.log(err)
 		return  res.send(err)
     });
 }
@@ -63,12 +58,24 @@ searchFilter=(req,res)=>{
 				return	res.send(response)
 		
 	}).catch(function(err) {
-        console.log('error:', err);
-	  	
+       
+		res.status(500);
+		return  res.send(err)
+    });
+}
+userGetById=(req,res)=>{
+	services.userGetById(req.body).then(user_result=>{
+		
+		res.status(200);
+		response={ msg: 'User information update successfully.',user_data:user_result }
+				return	res.send(response)
+		
+	}).catch(function(err) {
+       
 		res.status(500);
 		return  res.send(err)
     });
 }
 
-module.exports ={login,registration,getAllUser,updateUser,searchFilter}
+module.exports ={login,registration,getAllUser,updateUser,searchFilter,userGetById}
 

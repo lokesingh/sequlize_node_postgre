@@ -10,4 +10,5 @@ router.post('/login',controller.login)
 router.post('/getAllUser',checkAuthenication.checkAuthenication,controller.getAllUser)
 router.post('/updateUser',checkAuthenication.checkAuthenication,controller.updateUser)
 router.post('/searchFilter',checkAuthenication.checkAuthenication,controller.searchFilter)
+router.post('/userGetById',checkAuthenication.checkAuthenication,controller.userGetById)
 module.exports = router;
