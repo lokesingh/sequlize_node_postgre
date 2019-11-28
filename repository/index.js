@@ -101,20 +101,21 @@ login=(data)=>{
 
 updateUser=(data)=>{
 	return new Promise((resolve, reject)=>{
-		var user_id =  data.id 
-
+		var user_id =  data.user_id;
+	
 		var updateData = {
 			username: data.username,
 			name:data.name,
 			password: data.password
 		}
 		console.log('sad',updateData)
-		// modal.user.update(updateData,{returning: true, where: {id: user_id}}).then(function(updateUserData){
-		// 	resolve(updateUserData)
-		// }).catch(function(err_user){
+		modal.user.update(updateData,{ where: {id: user_id}}).then(function(updateUserData){
+		
+			resolve(updateUserData)
+		}).catch(function(err_user){
 			
-		// 		reject(err_user);
-		// });
+				reject(err_user);
+		});
 	})
 }
 searchFilter=(data)=>{
