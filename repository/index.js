@@ -1,5 +1,7 @@
 var modal = require('../models/index')
 var bcrypt = require('bcryptjs');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 saveUserInformation=(data)=>{
 	
 	 return new Promise((resolve, reject)=>{ 
@@ -57,19 +59,32 @@ saveUserInformation=(data)=>{
 
 getAllUser=(data)=>{
 	var page_no = parseInt(data.body.page_no)
-	var perPage = 10, page = Math.max(0, page_no-1);
+	var perPage = 1, page = Math.max(0, page_no-1);
 	var user_id =  data.body.user_id;
-	var dataSort = 'DESC'; 
+	var dataSort ;
+	console.log(page_no)
 	if(data.body.sort == 'asc'){
 		dataSort = 'ASC'
 	} else{
 			dataSort = 'DESC'
 	}
+	
+	var name=data.body.name;
+	var search_con='';
+	
+	if(name!=''){
+		search_con = {email:data.body.email,is_deleted: false,is_active:true,name: {
+			[Op.like]: '%'+name+'%'
+		}}
+	} else{
+	  search_con=	{email:data.body.email,is_deleted: false,is_active:true}
+	}
+	var offset1 = perPage * page
 	// pagination set
 	return new Promise((resolve, reject)=>{ 
 		// get total user
-		modal.user.count({where: {id:user_id,is_deleted: false,is_active:true}}).then((total_user)=>{
-			modal.user.findAll({where: {id:user_id,is_deleted: false,is_active:true},limit:perPage,order: [
+		modal.user.count({where: search_con}).then((total_user)=>{
+			modal.user.findAll({where: search_con,offset: offset1,limit:perPage,order: [
             ['id', dataSort]]
             
         }).then((get_user)=>{
@@ -77,11 +92,11 @@ getAllUser=(data)=>{
 				resolve(get_user);
 			})
 			.catch((get_err_user)=>{
-			  
+				console.log(get_err_user);
 			  	 reject(get_err_user);
 			});
 		}).catch((get_err_user)=>{
-			 
+			console.log(get_err_user)
 			  	 reject(get_err_user);
 		});
 	})

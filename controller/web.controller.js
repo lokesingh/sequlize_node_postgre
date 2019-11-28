@@ -24,6 +24,7 @@ getAllUser=(req, res) => {
 				return	res.send(response)
 	}).catch(function(err) {
 		res.status(500);
+			console.log(err)
 		return  res.send(err)
     });
 }
