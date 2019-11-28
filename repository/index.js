@@ -137,4 +137,4 @@ userGetById=(data)=>{
 	})
 }
 
-module.exports={saveUserInformation,getAllUser,login,searchFilter,userGetById}
+module.exports={saveUserInformation,getAllUser,login,updateUser,searchFilter,userGetById}
