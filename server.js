@@ -40,3 +40,7 @@ app.use("/api",require("./routes/api"));
 Server.listen(4005,function(){
   console.log('Server listening');
 }); 
+
+
+
+//https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04

@@ -31,16 +31,34 @@ saveUserInformation=(data)=>{
 	})
 }
 
-getAllUser=()=>{
+getAllUser=(data)=>{
+	var page_no = parseInt(data.body.page_no)
+	var perPage = 10, page = Math.max(0, page_no-1);
+	var user_id =  data.body.user_id;
+	var dataSort = 'DESC'; 
+	if(data.body.sort == 'asc'){
+		dataSort = 'ASC'
+	} else{
+			dataSort = 'DESC'
+	}
+	// pagination set
 	return new Promise((resolve, reject)=>{ 
-		var promise =
-		modal.user.findAll({where: {is_deleted: false,is_active:true}}).then((get_user)=>{
-			
-			resolve(get_user);
-		})
-		.catch((get_err_user)=>{
-		  console.log('error:', get_err_user);
-		  	 resolve(get_err_user);
+		// get total user
+		modal.user.count({where: {id:user_id,is_deleted: false,is_active:true}}).then((total_user)=>{
+			modal.user.findAll({where: {id:user_id,is_deleted: false,is_active:true},limit:perPage,order: [
+            ['id', dataSort]]
+            
+        }).then((get_user)=>{
+				
+				resolve(get_user);
+			})
+			.catch((get_err_user)=>{
+			  console.log('error:', get_err_user);
+			  	 reject(get_err_user);
+			});
+		}).catch((get_err_user)=>{
+			  console.log('error:', get_err_user);
+			  	 reject(get_err_user);
 		});
 	})
 }
