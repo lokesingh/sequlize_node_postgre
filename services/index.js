@@ -71,6 +71,18 @@ login=(data)=>{
 	})
 }
 
+updateUser=(data)=> {
+	return new Promise((resolve, reject)=>{ 
+	  repository.updateUser(data).then(result=> {
+	  		
+	      //return result;
+	    resolve(result);
+	  }).catch(function (err) {
+	        console.log(err);
+	       // return err;
+	     reject(err); 
+	  });
+   	})
+}
 
-
-module.exports={saveUser,getAllUser,login}
+module.exports={saveUser,getAllUser,login,updateUser}

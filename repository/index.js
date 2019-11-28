@@ -34,8 +34,8 @@ saveUserInformation=(data)=>{
 getAllUser=()=>{
 	return new Promise((resolve, reject)=>{ 
 		var promise =
-		modal.user.findAll().then((get_user)=>{
-			console.log('get_user',get_user)
+		modal.user.findAll({where: {is_deleted: false,is_active:true}}).then((get_user)=>{
+			
 			resolve(get_user);
 		})
 		.catch((get_err_user)=>{
@@ -46,15 +46,31 @@ getAllUser=()=>{
 }
 
 login=(data)=>{
-	// return new Promise((resolve, reject)=>{
-	// 	User.findOne({ user_email: data.email}, (err, user_detail)=> {
-	// 	    if (err) {
-	// 	    	 console.log('error:', get_err_user);
-	// 	  	 	reject(get_err_user);
-	// 	    } 
-	// 	    resolve(user_detail);
-	// 	})
-	// })
+	 return new Promise((resolve, reject)=>{
+		modal.user.findAll({where: {email: data.email}}).then(function(user_result) {
+			resolve(user_result);
+		}).catch((get_err_user)=>{
+		  console.log('error:', get_err_user);
+		  	 resolve(get_err_user);
+		});
+	 })
+}
+
+updateUser=(data)=>{
+	return new Promise((resolve, reject)=>{
+		var user_id =  data.id 
+		var updateData = {
+			username: data.username,
+			name:data.name,
+			password: data.password
+		}
+		modal.user.update(updateData,{returning: true, where: {id: user_id}}).then(function(updateUserData){
+			resolve(updateUserData)
+		}).catch(function(err_user){
+			console.log('error:', err_user);
+				reject(err_user);
+		});
+	})
 }
 
 module.exports={saveUserInformation,getAllUser,login}

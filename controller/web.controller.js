@@ -39,5 +39,21 @@ login=(req, res) => {
 		return  res.send(err)
     });
 }
-module.exports ={login,registration,getAllUser}
+
+updateUser=(req,res)=>{
+	services.updateUser(req.body).then(user_result=>{
+		
+		res.status(200);
+		response={ msg: 'User information update successfully.' }
+				return	res.send(response)
+		
+	}).catch(function(err) {
+        console.log('error:', err);
+	  	
+		res.status(500);
+		return  res.send(err)
+    });
+}
+
+module.exports ={login,registration,getAllUser,updateUser}
 

@@ -8,4 +8,5 @@ var checkAuthenication = require('../middlewares/middleware');
 router.post('/registration',controller.registration)
 router.post('/login',controller.login)
 router.post('/getAllUser',checkAuthenication.checkAuthenication,controller.getAllUser)
+router.post('/updateUser',checkAuthenication.checkAuthenication,controller.updateUser)
 module.exports = router;
