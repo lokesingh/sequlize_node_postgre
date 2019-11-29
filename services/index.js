@@ -40,7 +40,7 @@ login=(data)=>{
 			return	reject(response);
 	 	}
 	 	// check email is_deleted or not
-	 	if(result.is_deleted==true){
+	 	if(result.is_deleted===true){
 			var	response={ msg: 'your email id does not registered.' }
 			return	reject(response);
 	 	} 

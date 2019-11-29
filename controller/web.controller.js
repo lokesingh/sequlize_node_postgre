@@ -18,7 +18,7 @@ registration=(req, res) => {
 
 getAllUser=(req, res) => {
 
-	services.getAllUser(req).then(get_user_result=>{
+	services.getAllUser(req.body).then(get_user_result=>{
 		res.status(200);
 		response={  msg: 'get user successfully.',get_user_result }
 				return	res.send(response)

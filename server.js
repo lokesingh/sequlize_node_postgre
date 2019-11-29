@@ -44,3 +44,5 @@ Server.listen(4005,function(){
 
 
 //https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04
+
+// sudo -u postgres psql
