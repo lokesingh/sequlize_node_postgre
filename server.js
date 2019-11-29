@@ -46,3 +46,26 @@ Server.listen(4005,function(){
 //https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04
 
 // sudo -u postgres psql
+
+
+// migration
+/*
+'use strict';
+
+import * as models from "../../models";
+
+module.exports = {
+
+  up: function (queryInterface, Sequelize) {
+
+    return queryInterface.createTable(models.Role.tableName, models.Role.attributes)
+    .then(() => queryInterface.createTable(models.Team.tableName, models.Team.attributes))
+    .then(() => queryInterface.createTable(models.User.tableName, models.User.attributes))
+
+  },
+
+  down: function (queryInterface, Sequelize) {
+    ...
+  }
+
+};*/
