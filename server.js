@@ -69,3 +69,20 @@ module.exports = {
   }
 
 };*/
+
+
+// postgre sql start command in ubntu 
+/*
+
+    1) sudo -i -u postgres
+
+    2)  psql
+
+    3) show database  list:  \l
+
+    4) go to inside database: \c database name
+
+    5) 
+
+
+ */

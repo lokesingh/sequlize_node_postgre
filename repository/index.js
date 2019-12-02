@@ -3,56 +3,36 @@ var bcrypt = require('bcryptjs');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 saveUserInformation = (data) => {
-
+		
 	return new Promise((resolve, reject) => {
-		modal.user.findAll({ where: { email: data.email } }).then(function (user_result) {
+		modal.users.findAll({ where: { email: data.email } }).then(function (user_result) {
 			if (user_result.length > 0) {
+				
 				reject({ msg: 'Email already registered' });
 			} else {
-				var newUser = modal.user.build({
+				var newUser = modal.users.build({
+					
 					username: data.username,
 					name: data.name,
 					email: data.email,
 					password: bcrypt.hashSync(data.password, 8),
 					is_active: true,
-					is_deleted: false
+					is_deleted: false,
 				})
+				
 				newUser.save().then(function (newTask) {
 					resolve(newTask)
 				}).catch(function (err_user) {
-
+					console.log(err_user)
 					reject(err_user);
 				});
 			}
 		}).catch(function (err_user) {
 
 			// if table is not created so we need to execute this query.
-			if (err_user.parent.errno == 1146) {
-				// Note: using `force: true` will drop the table if it already exists
-				modal.user.sync({ force: true }).then(() => {
-					// database store first time
-					var newUser = modal.user.build({
-						username: data.username,
-						name: data.name,
-						email: data.email,
-						password: data.password,
-						is_active: true,
-						is_deleted: false
-					})
-					newUser.save().then(function (newTask) {
-						resolve(newTask)
-					}).catch(function (err_user) {
-
-						reject(err_user);
-					});
-				}).catch(function (err_user) {
-
-					reject(err_user);
-				});
-
-			} else {
-				reject(err_user.parent.errno);
-			}
+			console.log('1',err_user);
+			reject(err_user);
+					
 		});
 	})
 }

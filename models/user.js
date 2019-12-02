@@ -1,7 +1,11 @@
 'use strict'
 module.exports = function(sequelize,Datatypes){
-    var user = sequelize.define('user',{
-            
+    var user = sequelize.define('users',{
+            id: {
+							type: Datatypes.INTEGER,
+							primaryKey: true,
+							autoIncrement: true // Automatically gets converted to SERIAL for postgres
+						},
             username:Datatypes.STRING,
             password:Datatypes.STRING,
             name:Datatypes.STRING,

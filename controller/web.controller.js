@@ -11,6 +11,7 @@ registration=(req, res) => {
 		
 	}).catch(function(err) {
 		res.status(500);
+		console.log(err)
 		return  res.send(err)
     });
 	

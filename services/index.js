@@ -10,6 +10,7 @@ saveUser=(data)=> {
 	      //return result;
 	    resolve(result);
 	  }).catch(function (err) {
+		  console.log(err)
 	       // return err;
 	     reject(err); 
 	  });

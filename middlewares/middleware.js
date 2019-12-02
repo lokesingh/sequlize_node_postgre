@@ -4,8 +4,8 @@ var jwt = require('jsonwebtoken');
 var modal = require('../models/index')
 var secret = "6z7mfMW1GwKzG2sgsG9icqN1bfcJTooGwIOySP22";
 module.exports.checkAuthenication=(req,res,next)=>{
-   // var token =  req.headers['x-access-token'];
-    var token = req.body.token
+    var token =  req.headers['x-access-token'];
+    //var token = req.body.token
     
     if (token) {
         //veryfy token
