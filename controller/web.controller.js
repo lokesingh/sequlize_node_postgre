@@ -79,5 +79,19 @@ userGetById=(req,res)=>{
     });
 }
 
-module.exports ={login,registration,getAllUser,updateUser,searchFilter,userGetById}
+getUserWithBook=(req,res)=>{
+		services.getUserWithBook(req.body).then(user_result=>{
+		
+		res.status(200);
+		response={ msg: 'User information get successfully.',user_data:user_result }
+				return	res.send(response)
+		
+	}).catch(function(err) {
+		console.log(err)
+		res.status(500);
+		return  res.send(err)
+    });
+}
+
+module.exports ={login,registration,getAllUser,updateUser,searchFilter,userGetById,getUserWithBook}
 

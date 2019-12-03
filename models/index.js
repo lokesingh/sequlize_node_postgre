@@ -32,8 +32,17 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
-
+ 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+//Models/tables
+//db.users = require('./user.js')(sequelize, Sequelize);
+//db.book = require('./book.js')(sequelize, Sequelize);
+
+
+//Relations
+//db.book.belongsTo(db.user);
+//db.posts.hasMany(db.book);
 
 module.exports = db;

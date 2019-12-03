@@ -7,11 +7,11 @@ saveUser=(data)=> {
 	return new Promise((resolve, reject)=>{ 
 	  repository.saveUserInformation(data).then(result=> {
 	  		
-	      //return result;
+		//return result;
 	    resolve(result);
 	  }).catch(function (err) {
 		  console.log(err)
-	       // return err;
+		 // return err;
 	     reject(err); 
 	  });
    	})
@@ -20,12 +20,12 @@ saveUser=(data)=> {
 getAllUser=(data)=> {
 	return new Promise((resolve, reject)=>{ 
 	  repository.getAllUser(data).then(result=> {
-	      //return result;
-	      resolve(result);
+		//return result;
+		resolve(result);
 	  }).catch(function (err) {
-	      
-	       // return err;
-	       reject(err); 
+		
+		 // return err;
+		 reject(err); 
 	  });
 	})
 }
@@ -66,8 +66,8 @@ login=(data)=>{
 		var response={ data:data_result}  ;
 			resolve(response);
 	  }).catch(function (err) {
-	       // return err;
-	       reject(err); 
+		 // return err;
+		 reject(err); 
 	  });
 	})
 }
@@ -76,11 +76,11 @@ updateUser=(data)=> {
 	return new Promise((resolve, reject)=>{ 
 	  repository.updateUser(data).then(result=> {
 	  		
-	      //return result;
+		//return result;
 	    resolve(result);
 	  }).catch(function (err) {
-	       // return err;
-	       console.log(err)
+		 // return err;
+		 console.log(err)
 	     reject(err); 
 	  });
    	})
@@ -90,10 +90,10 @@ searchFilter=(data)=> {
 	return new Promise((resolve, reject)=>{ 
 	  repository.searchFilter(data).then(result=> {
 	  		
-	      //return result;
+		//return result;
 	    resolve(result);
 	  }).catch(function (err) {
-	       // return err;
+		 // return err;
 	     reject(err); 
 	  });
    	})
@@ -103,13 +103,25 @@ userGetById=(data)=> {
 	return new Promise((resolve, reject)=>{ 
 	  repository.userGetById(data).then(result=> {
 	  		
-	      //return result;
+		//return result;
 	    resolve(result);
 	  }).catch(function (err) {
-	       // return err;
+		 // return err;
 	     reject(err); 
 	  });
    	})
 }
 
-module.exports={saveUser,getAllUser,login,updateUser,searchFilter,userGetById}
+getUserWithBook=()=> {
+	return new Promise((resolve, reject)=>{ 
+	  repository.getUserWithBook().then(result=> {
+		//return result;
+		resolve(result);
+	  }).catch(function (err) {
+		
+		 // return err;
+		 reject(err); 
+	  });
+	})
+}
+module.exports={saveUser,getAllUser,login,updateUser,searchFilter,userGetById,getUserWithBook}

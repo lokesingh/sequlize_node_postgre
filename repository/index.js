@@ -28,9 +28,7 @@ saveUserInformation = (data) => {
 				});
 			}
 		}).catch(function (err_user) {
-
-			// if table is not created so we need to execute this query.
-			console.log('1',err_user);
+			
 			reject(err_user);
 					
 		});
@@ -143,4 +141,22 @@ userGetById = (data) => {
 	})
 }
 
-module.exports = { saveUserInformation, getAllUser, login, updateUser, searchFilter, userGetById }
+getUserWithBook = () =>{
+	return new Promise((resolve, reject) => {
+
+		modal.book.findAll({
+		}).then(function (user_result) {
+
+			resolve(user_result);
+		}).catch(function (err_user) {
+			console.log(err_user)
+			reject(err_user);
+		});
+	})
+}
+
+/*include: [{// Notice `include` takes an ARRAY
+				model: modal.book
+			}] */
+
+module.exports = { saveUserInformation, getAllUser, login, updateUser, searchFilter, userGetById,getUserWithBook }
