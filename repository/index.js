@@ -144,7 +144,10 @@ userGetById = (data) => {
 getUserWithBook = () =>{
 	return new Promise((resolve, reject) => {
 
-		modal.book.findAll({
+		modal.books.findAll({
+			include: [
+				{ model: modal.users}
+			 ],
 		}).then(function (user_result) {
 
 			resolve(user_result);

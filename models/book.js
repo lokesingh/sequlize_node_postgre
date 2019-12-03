@@ -1,6 +1,7 @@
 'use strict'
+var modal = require('../models/index')
 module.exports = function (sequelize, Datatypes) {
-    var book = sequelize.define('book', {
+    var books = sequelize.define('books', {
         id: {
             type: Datatypes.INTEGER,
             primaryKey: true,
@@ -9,7 +10,7 @@ module.exports = function (sequelize, Datatypes) {
         user_id: {
             type: Datatypes.INTEGER,
             references: {
-                model: 'users',
+                model: module.users,
                 key: 'id'
             }
         },
@@ -21,11 +22,11 @@ module.exports = function (sequelize, Datatypes) {
     }, {
             classMethods: {
                 associate: function (models) {
-
+                  books.belongsTo(modal.users, { foreignKey: 'user_id', });
                 }
             }
 
         }
     )
-    return book;
+    return books;
 }

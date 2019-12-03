@@ -26,7 +26,7 @@ module.exports = {
       updatedAt: Sequelize.DATE
     })
       .then(() => {
-        queryInterface.createTable('book', {
+        queryInterface.createTable('books', {
           id: {
             type: Sequelize.INTEGER,
             primaryKey: true,

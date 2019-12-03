@@ -84,5 +84,7 @@ module.exports = {
 
     5) 
 
-
+  open postgre sql command 
+  1) sudo -u postgres psql;
+  2) ALTER USER postgres PASSWORD 'newPassword';
  */
